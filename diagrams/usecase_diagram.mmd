@@ -1,0 +1,59 @@
+graph LR
+    subgraph ACTORS["Actors"]
+        STU["👤 Student"]
+        TEA["👨‍🏫 Teacher"]
+        ADM["🛡️ Admin"]
+    end
+
+    subgraph SYSTEM["System: Student Project Tracking Dashboard"]
+        UC1["🔐 Login"]
+        UC2["📊 View Dashboard"]
+        UC3["📋 View Projects"]
+        UC4["➕ Create Project"]
+        UC5["✏️ Update Project"]
+        UC6["🔄 Update Status"]
+        UC7["📝 Submit Weekly Report"]
+        UC8["💬 Add Comment"]
+        UC9["📎 Upload Files"]
+        UC10["📥 Download Files"]
+        UC11["👥 Manage Users"]
+        UC12["📚 Manage Courses"]
+        UC13["⭐ Give Grade"]
+        UC14["⚙️ System Settings"]
+        UC15["📊 View Statistics"]
+    end
+
+    STU --> UC1
+    STU --> UC2
+    STU --> UC3
+    STU --> UC7
+    STU --> UC9
+    STU --> UC10
+
+    TEA --> UC1
+    TEA --> UC2
+    TEA --> UC3
+    TEA --> UC6
+    TEA --> UC8
+    TEA --> UC13
+
+    ADM --> UC1
+    ADM --> UC2
+    ADM --> UC3
+    ADM --> UC4
+    ADM --> UC5
+    ADM --> UC6
+    ADM --> UC7
+    ADM --> UC8
+    ADM --> UC9
+    ADM --> UC10
+    ADM --> UC11
+    ADM --> UC12
+    ADM --> UC13
+    ADM --> UC14
+    ADM --> UC15
+
+    UC15 -.->|includes| UC2
+    UC4 -.->|includes| UC3
+    UC7 -.->|includes| UC3
+    UC8 -.->|includes| UC3

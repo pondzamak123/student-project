@@ -1,0 +1,92 @@
+erDiagram
+    USERS {
+        int id PK "PK Auto Increment"
+        string name "ชื่อ-นามสกุล"
+        string email UK "Unique Email"
+        string password "Hashed bcrypt"
+        enum role "student/teacher/admin"
+        string avatar "Initials TW"
+        string department "แผนก/คณะ"
+        string studentId "รหัสนักศึกษา"
+        boolean isActive "สถานะใช้งาน"
+        datetime lastLogin "ล็อกอินล่าสุด"
+    }
+
+    COURSES {
+        string code PK "รหัสวิชา CS302"
+        string name "ชื่อวิชา"
+        int credits "หน่วยกิต"
+        string description "รายละเอียดวิชา"
+    }
+
+    SYSTEM_SETTINGS {
+        string key PK "setting key"
+        string value "setting value"
+        string type "string/number/boolean"
+        string description "คำอธิบาย"
+    }
+
+    PROJECTS {
+        ObjectId _id PK "MongoDB Auto ID"
+        string title "ชื่อโครงงาน ไทย"
+        string titleEn "ชื่อโครงงาน อังกฤษ"
+        string description "รายละเอียด"
+        enum status "in_progress/submitted/reviewed/approved/overdue"
+        int progress "0-100 percent"
+        array studentIds "FK to USERS"
+        array studentNames "ชื่อนักศึกษา"
+        string courseCode "FK to COURSES"
+        string courseName "ชื่อวิชา"
+        int teacherId "FK to USERS"
+        string teacherName "ชื่ออาจารย์"
+        date startDate "วันที่เริ่ม"
+        date dueDate "กำหนดส่ง"
+        array tags "tags"
+        array tools "เครื่องมือ"
+        array milestones "Milestone list"
+    }
+
+    WEEKLY_REPORTS {
+        ObjectId _id PK "MongoDB Auto ID"
+        int week "สัปดาห์ที่"
+        string description "รายละเอียดงาน"
+        int progress "progress percent"
+        array tasks "Task list"
+        ObjectId projectId FK "FK to PROJECTS"
+        int submittedBy "FK to USERS"
+        date submittedAt "วันที่ส่ง"
+        string status "draft/submitted/reviewed"
+        array comments "Comments array"
+    }
+
+    COMMENTS {
+        ObjectId _id PK "MongoDB Auto ID"
+        ObjectId reportId FK "FK to WEEKLY_REPORTS"
+        ObjectId projectId FK "FK to PROJECTS"
+        string content "ข้อความคอมเมนต์"
+        int authorId "FK to USERS"
+        string authorName "ชื่อผู้เขียน"
+        string authorRole "student/teacher"
+        date createdAt "วันที่เขียน"
+    }
+
+    FILES {
+        ObjectId _id PK "MongoDB Auto ID"
+        ObjectId projectId FK "FK to PROJECTS"
+        string originalName "ชื่อไฟล์เดิม"
+        string storedName "ชื่อไฟล์ใน server"
+        string path "path /uploads/"
+        string mimeType "MIME type"
+        int size "ขนาด bytes"
+        ObjectId uploadedBy "FK to USERS"
+        date uploadedAt "วันที่อัปโหลด"
+    }
+
+    USERS ||--o{ PROJECTS : "creates/assigned"
+    USERS ||--o{ WEEKLY_REPORTS : "submits"
+    USERS ||--o{ COMMENTS : "writes"
+    USERS ||--o{ FILES : "uploads"
+    COURSES ||--o{ PROJECTS : "belongs to"
+    PROJECTS ||--o{ WEEKLY_REPORTS : "contains"
+    WEEKLY_REPORTS ||--o{ COMMENTS : "has"
+    PROJECTS ||--o{ FILES : "attaches"

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container { width: 1280px; min-height: 720px; box-sizing: border-box; background: #E8EAF6; position: relative; overflow: hidden; font-family: 'Inter', sans-serif; }
+      
+      /* Decorative Circles */
+      .circle-accent-1 { position: absolute; width: 350px; height: 350px; border-radius: 50%; background: #FFC107; top: -80px; right: -80px; opacity: 0.85; }
+      .circle-accent-2 { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: #1A237E; bottom: 50px; left: 500px; opacity: 0.1; }
+      
+      /* Layout */
+      .split-left { position: absolute; left: 60px; top: 150px; width: 600px; }
+      .split-right { position: absolute; right: 60px; top: 100px; width: 540px; }
+      
+      /* Image Container */
+      .image-container { width: 100%; min-height: 380px; background: #ffffff; border: 4px solid #1A237E; display: flex; align-items: center; justify-content: center; padding: 10px; }
+      .eval-image { max-width: 100%; max-height: 360px; object-fit: contain; }
+      
+      /* Typography */
+      .slide-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 34px; color: #1A237E; margin-bottom: 40px; }
+      
+      /* Results List */
+      .results-list { display: flex; flex-direction: column; gap: 24px; }
+      .result-item { display: flex; align-items: flex-start; }
+      .result-icon { min-width: 36px; height: 36px; border-radius: 50%; background: #1A237E; display: flex; align-items: center; justify-content: center; color: #FFC107; font-size: 16px; margin-right: 16px; margin-top: 2px; }
+      .result-text { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 19px; color: #3949AB; line-height: 1.5; }
+      .result-text strong { font-weight: 500; color: #1A237E; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="circle-accent-1"></div>
+        <div class="circle-accent-2"></div>
+        
+        <div class="split-left">
+            <div class="image-container">
+                <img src="/home/ubuntu/upload/pasted_file_8X5ymU_image.png" alt="Evaluation Criteria" class="eval-image">
+            </div>
+        </div>
+        
+        <div class="split-right">
+            <div class="slide-title">ระบบทำงานได้จริงครบทุกฟังก์ชัน</div>
+            
+            <div class="results-list">
+                <div class="result-item">
+                    <div class="result-icon"><i class="fas fa-users-cog"></i></div>
+                    <div class="result-text"><strong>3 Roles ทำงานได้ถูกต้อง</strong><br>Student, Teacher, Admin แสดงข้อมูลตามสิทธิ์</div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-icon"><i class="fas fa-check-double"></i></div>
+                    <div class="result-text"><strong>CRUD ครบถ้วน</strong><br>จัดการ Projects, Users, Courses, Settings ได้สมบูรณ์</div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-icon"><i class="fas fa-comments"></i></div>
+                    <div class="result-text"><strong>Weekly Report + Comments</strong><br>ทำงาน end-to-end ส่งรายงานและคอมเมนต์ได้จริง</div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-icon"><i class="fas fa-file-upload"></i></div>
+                    <div class="result-text"><strong>File Upload + Download</strong><br>อัปโหลดไฟล์แนบได้สูงสุด 5 ไฟล์ ขนาด 10MB</div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-icon"><i class="fas fa-book"></i></div>
+                    <div class="result-text"><strong>API Documentation ครบ</strong><br>มี Swagger UI + Postman Collection พร้อมใช้งาน</div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="result-text"><strong>Validation ทุก Endpoint</strong><br>ป้องกันข้อมูลผิดพลาดและยืนยันตัวตนด้วย JWT</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

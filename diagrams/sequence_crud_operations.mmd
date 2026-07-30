@@ -1,0 +1,65 @@
+sequenceDiagram
+    autonumber
+    participant A as Admin
+    participant FE as Frontend
+    participant BE as Backend (Express)
+    participant MY as MySQL
+    participant MG as MongoDB
+
+    rect rgb(232, 234, 246)
+        Note over A,MG: === Admin: Create Project (MySQL + MongoDB) ===
+    end
+
+    A->>FE: กรอกข้อมูลโครงงานใหม่
+    FE->>BE: POST /api/projects (Bearer Token)
+    BE->>BE: Validate JWT → Role = Admin
+    BE->>BE: Validate input (title, studentIds, courseCode)
+    BE->>MY: ตรวจสอบ Course exists
+    BE->>MY: ตรวจสอบ Student exists
+    MY-->>BE: Return validation OK
+    BE->>MG: สร้าง Project Document (subdocuments: reports, comments, files)
+    MG-->>BE: Return Project _id
+    BE->>MY: อัปเดต User → assignedProject
+    MY-->>BE: Return updated Users
+    BE-->>FE: Return { success, project }
+    FE-->>A: แสดง Project ใหม่ใน Dashboard
+
+    rect rgb(255, 243, 205)
+        Note over A,MG: === Teacher: Update Status + Comment ===
+    end
+
+    participant T as Teacher
+
+    T->>FE: เลือก Project → เปลี่ยน Status
+    FE->>BE: PATCH /api/projects/:id/status
+    BE->>BE: Validate JWT → Role = Teacher
+    BE->>BE: Ownership Check (teacherId match)
+    BE->>MG: อัปเดต status + grade
+    MG-->>BE: Return updated Project
+    BE-->>FE: Return { success, status }
+    FE-->>T: แสดง Status Badge สีใหม่
+
+    T->>FE: คอมเมนต์รายงานสัปดาห์
+    FE->>BE: POST /api/projects/:id/weekly-reports/:rid/comments
+    BE->>BE: Validate JWT → Teacher
+    BE->>MG: เพิ่ม Comment ใน Report
+    MG-->>BE: Return updated Report
+    BE-->>FE: Return { success, comment }
+    FE-->>T: แสดง Comment ใหม่
+
+    rect rgb(232, 234, 246)
+        Note over A,MG: === Student: Upload Files ===
+    end
+
+    participant S as Student
+
+    S->>FE: เลือกไฟล์ (PDF/DOCX/ZIP)
+    FE->>BE: POST /api/projects/:id/files (multipart/form-data)
+    BE->>BE: Validate JWT → Student
+    BE->>BE: Ownership Check (studentId in project)
+    BE->>BE: Validate file (type, size 10MB, max 5 files)
+    BE->>BE: Multer → บันทึกไฟล์ → /uploads/
+    BE->>MG: เพิ่ม File entry ใน Project.files
+    MG-->>BE: Return updated Project
+    BE-->>FE: Return { success, files }
+    FE-->>S: แสดงไฟล์ที่อัปโหลด + Link ดาวน์โหลด

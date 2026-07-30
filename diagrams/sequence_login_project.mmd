@@ -1,0 +1,57 @@
+sequenceDiagram
+    autonumber
+    participant U as ผู้ใช้ (Student/Teacher/Admin)
+    participant FE as Frontend (React)
+    participant BE as Backend (Express)
+    participant MY as MySQL (Users/Courses)
+    participant MG as MongoDB (Projects/Reports)
+
+    rect rgb(232, 234, 246)
+        Note over U,MG: === Authentication Flow ===
+    end
+
+    U->>FE: กรอก Email + Password
+    FE->>BE: POST /api/auth/login
+    BE->>MY: ค้นหา User ตาม Email
+    MY-->>BE: Return User data
+    BE->>BE: ตรวจสอบ Password (bcrypt)
+    BE->>BE: สร้าง JWT Token (id, role, email)
+    BE-->>FE: Return { token, user }
+    FE->>FE: บันทึก Token → localStorage
+    FE-->>U: Login สำเร็จ → Redirect Dashboard
+
+    rect rgb(255, 243, 205)
+        Note over U,MG: === Fetch Projects (Dashboard) ===
+    end
+
+    U->>FE: เข้าหน้า Dashboard
+    FE->>BE: GET /api/projects (Bearer Token)
+    BE->>BE: Validate JWT Token
+    BE->>MY: ตรวจสอบ Role ของ User
+    alt Role = Admin
+        BE->>MG: ดึง Projects ทั้งหมด
+    else Role = Teacher
+        BE->>MG: ดึง Projects ของ Teacher ตัวเอง
+    else Role = Student
+        BE->>MG: ดึง Projects ของ Student ตัวเอง
+    end
+    BE->>MY: ดึง Course names
+    BE->>MY: ดึง User details
+    MG-->>BE: Return Projects + Reports + Comments
+    MY-->>BE: Return Courses + Users
+    BE-->>FE: Return Projects (รวม courseName, studentNames)
+    FE-->>U: แสดง Project Cards + Stats
+
+    rect rgb(232, 234, 246)
+        Note over U,MG: === Submit Weekly Report ===
+    end
+
+    U->>FE: กรอกรายงานสัปดาห์ + Progress
+    FE->>BE: POST /api/projects/:id/weekly-reports
+    BE->>BE: Validate JWT + Ownership Check
+    BE->>BE: Validate input (week, description, progress, tasks)
+    BE->>MG: เพิ่ม WeeklyReport ใน Project
+    MG-->>BE: Return updated Project
+    BE->>MG: คำนวณ Progress ใหม่
+    BE-->>FE: Return { success, progress }
+    FE-->>U: แสดง Progress Bar อัปเดต

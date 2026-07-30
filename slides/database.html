@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container { width: 1280px; min-height: 720px; box-sizing: border-box; background: #E8EAF6; position: relative; overflow: hidden; font-family: 'Inter', sans-serif; }
+      .circle-mysql { position: absolute; width: 320px; height: 320px; border-radius: 50%; background: #1A237E; top: 120px; left: -60px; opacity: 0.9; }
+      .circle-mongo { position: absolute; width: 240px; height: 240px; border-radius: 50%; background: #FFC107; top: 280px; left: 120px; opacity: 0.85; }
+      .db-label { position: absolute; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 16px; color: #fff; text-align: center; width: 120px; }
+      .db-label.mysql { top: 260px; left: 30px; }
+      .db-label.mongo { top: 380px; left: 180px; color: #1A237E; }
+      .db-icon { position: absolute; font-size: 40px; }
+      .db-icon.mysql { top: 200px; left: 55px; color: rgba(255,255,255,0.3); }
+      .db-icon.mongo { top: 330px; left: 200px; color: rgba(26,35,126,0.2); }
+      .slide-header { position: absolute; top: 50px; left: 460px; right: 60px; }
+      .slide-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 30px; color: #1A237E; margin-bottom: 8px; }
+      .comparison-table { position: absolute; top: 200px; left: 460px; right: 60px; width: 760px; }
+      .table-row { display: grid; grid-template-columns: 160px 1fr 1fr; margin-bottom: 12px; align-items: start; }
+      .table-row.header { border-bottom: 2px solid #1A237E; padding-bottom: 10px; margin-bottom: 18px; }
+      .table-row.header .col-label { font-weight: 500; color: #3949AB; font-size: 14px; }
+      .table-row.header .col-mysql { font-weight: 500; color: #1A237E; font-size: 18px; }
+      .table-row.header .col-mongo { font-weight: 500; color: #FFC107; font-size: 18px; background: #1A237E; padding: 2px 10px; }
+      .col-label { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px; color: #3949AB; }
+      .col-mysql-text { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; color: #1A237E; line-height: 1.5; }
+      .col-mongo-text { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; color: #3949AB; line-height: 1.5; }
+      .summary-bar { position: absolute; bottom: 60px; left: 460px; right: 60px; display: flex; gap: 30px; }
+      .summary-item { display: flex; align-items: center; font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; color: #3949AB; }
+      .summary-item i { color: #FFC107; margin-right: 8px; font-size: 16px; }
+      .summary-item strong { font-weight: 500; color: #1A237E; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="circle-mysql"></div>
+        <div class="circle-mongo"></div>
+        <div class="db-icon mysql"><i class="fas fa-server"></i></div>
+        <div class="db-icon mongo"><i class="fas fa-leaf"></i></div>
+        <div class="db-label mysql">MySQL</div>
+        <div class="db-label mongo">MongoDB</div>
+        <div class="slide-header">
+            <div class="slide-title">เลือก DB ตามลักษณะข้อมูล — MySQL vs MongoDB</div>
+        </div>
+        <div class="comparison-table">
+            <div class="table-row header">
+                <div class="col-label"></div>
+                <div class="col-mysql">MySQL (Sequelize)</div>
+                <div class="col-mongo">MongoDB (Mongoose)</div>
+            </div>
+            <div class="table-row">
+                <div class="col-label">ลักษณะข้อมูล</div>
+                <div class="col-mysql-text">โครงสร้างชัดเจน (Relational)</div>
+                <div class="col-mongo-text">ยืดหยุ่น เปลี่ยนแปลง schema ได้ (Flexible)</div>
+            </div>
+            <div class="table-row">
+                <div class="col-label">เก็บข้อมูล</div>
+                <div class="col-mysql-text">Users (11 คน)<br>Courses (10 วิชา)<br>SystemSettings (5 ค่า)</div>
+                <div class="col-mongo-text">Projects (3 โปรเจค)<br>WeeklyReports<br>Comments, Files</div>
+            </div>
+            <div class="table-row">
+                <div class="col-label">ORM/ODM</div>
+                <div class="col-mysql-text">Sequelize → sync() สร้างตารางอัตโนมัติ</div>
+                <div class="col-mongo-text">Mongoose → Subdocument nested reports + comments</div>
+            </div>
+            <div class="table-row">
+                <div class="col-label">Validation</div>
+                <div class="col-mysql-text">Unique constraint, Enum, NOT NULL</div>
+                <div class="col-mongo-text">Required fields, Enum status, Min/Max progress</div>
+            </div>
+            <div class="table-row">
+                <div class="col-label">ข้อดี</div>
+                <div class="col-mysql-text">ACID transactions, JOIN queries, ข้อมูลผู้ใช้มั่นคง</div>
+                <div class="col-mongo-text">Document nesting, Schema-free, เขียน report ได้เร็ว</div>
+            </div>
+        </div>
+        <div class="summary-bar">
+            <div class="summary-item"><i class="fas fa-link"></i> ทั้ง 2 DB <strong>เชื่อมต่อพร้อมกัน</strong> — API เดียวเข้าถึงข้อมูลจากทั้ง 2 แหล่ง</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+classDiagram
+    direction LR
+
+    class Project {
+        <<MongoDB Mongoose Model>>
+        -title: String
+        -titleEn: String
+        -description: String
+        -status: Enum
+        -progress: Number
+        -studentIds: [Number]
+        -courseCode: String
+        -teacherId: Number
+        -startDate: Date
+        -dueDate: Date
+        -tags: [String]
+        -tools: [String]
+        -milestones: [Milestone]
+        -weeklyReports: [WeeklyReport]
+        -files: [File]
+        +save()
+        +find()
+        +findById()
+        +updateOne()
+        +deleteOne()
+    }
+
+    class WeeklyReport {
+        <<Subdocument>>
+        -week: Number
+        -description: String
+        -progress: Number
+        -tasks: [Task]
+        -comments: [Comment]
+        -submittedBy: Number
+        -submittedAt: Date
+        -status: String
+    }
+
+    class Comment {
+        <<Subdocument>>
+        -content: String
+        -authorId: Number
+        -authorName: String
+        -authorRole: String
+        -createdAt: Date
+    }
+
+    class Milestone {
+        <<Subdocument>>
+        -title: String
+        -description: String
+        -completed: Boolean
+        -dueDate: Date
+    }
+
+    class Task {
+        <<Value Object>>
+        -task: String
+        -done: Boolean
+    }
+
+    class File {
+        <<Subdocument>>
+        -originalName: String
+        -storedName: String
+        -path: String
+        -mimeType: String
+        -size: Number
+        -uploadedBy: Number
+    }
+
+    class User {
+        <<MySQL Sequelize Model>>
+        -id: Integer
+        -name: String
+        -email: String
+        -password: String
+        -role: Enum
+        -avatar: String
+        -department: String
+        -studentId: String
+        -isActive: Boolean
+        +create()
+        +findAll()
+        +findOne()
+        +update()
+        +destroy()
+    }
+
+    class Course {
+        <<MySQL Sequelize Model>>
+        -code: String
+        -name: String
+        -credits: Integer
+        -description: String
+        +create()
+        +findAll()
+        +findByPk()
+        +destroy()
+    }
+
+    class SystemSetting {
+        <<MySQL Sequelize Model>>
+        -key: String
+        -value: String
+        -type: String
+        -description: String
+        +create()
+        +findAll()
+        +upsert()
+    }
+
+    class AuthController {
+        <<Controller>>
+        +login(req, res)
+        +getMe(req, res)
+        -hashPassword(password)
+        -comparePassword(password, hash)
+        -generateToken(user)
+    }
+
+    class ProjectController {
+        <<Controller>>
+        +getAll(req, res)
+        +getById(req, res)
+        +create(req, res)
+        +update(req, res)
+        +updateStatus(req, res)
+        +delete(req, res)
+        +getStats(req, res)
+    }
+
+    class WeeklyReportController {
+        <<Controller>>
+        +submitReport(req, res)
+        +updateReport(req, res)
+        +getReport(req, res)
+        +addComment(req, res)
+        +deleteComment(req, res)
+    }
+
+    class FileController {
+        <<Controller>>
+        +uploadFiles(req, res)
+        +deleteFile(req, res)
+        +downloadFile(req, res)
+    }
+
+    class AuthMiddleware {
+        <<Middleware>>
+        +authenticate(req, res, next)
+        +authorizeRole(roles)
+        -verifyToken(token)
+    }
+
+    class ValidationMiddleware {
+        <<Middleware>>
+        +validateLogin
+        +validateProject
+        +validateReport
+        +validateUser
+    }
+
+    class UploadMiddleware {
+        <<Middleware>>
+        +uploadFiles: Multer config
+        +validateFileType
+    }
+
+    Project --> WeeklyReport : "contains"
+    Project --> Milestone : "contains"
+    Project --> File : "contains"
+    WeeklyReport --> Comment : "contains"
+    WeeklyReport --> Task : "contains"
+
+    AuthController --> AuthMiddleware : "uses"
+    ProjectController --> AuthMiddleware : "uses"
+    ProjectController --> ValidationMiddleware : "uses"
+    WeeklyReportController --> AuthMiddleware : "uses"
+    WeeklyReportController --> ValidationMiddleware : "uses"
+    FileController --> AuthMiddleware : "uses"
+    FileController --> UploadMiddleware : "uses"
+
+    AuthController ..> User : "queries"
+    ProjectController ..> Project : "queries"
+    ProjectController ..> User : "queries"
+    ProjectController ..> Course : "queries"
+    WeeklyReportController ..> Project : "queries"
+    FileController ..> Project : "queries"

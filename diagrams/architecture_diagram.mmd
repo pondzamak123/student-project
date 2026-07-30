@@ -1,0 +1,87 @@
+graph TB
+    subgraph CLIENT["🖥️ Client Layer (Browser)"]
+        A["React App (Vite)"]
+        A1["Login Page"]
+        A2["Dashboard"]
+        A3["Project Detail"]
+        A4["Admin Panel"]
+        A5["Settings Page"]
+        A --- A1
+        A --- A2
+        A --- A3
+        A --- A4
+        A --- A5
+    end
+
+    subgraph MIDDLEWARE["🔐 Middleware Layer"]
+        B["JWT Authentication"]
+        B1["Role-Based Access Control"]
+        B2["Input Validation (express-validator)"]
+        B3["CORS Policy"]
+        B4["Multer File Upload"]
+    end
+
+    subgraph API["⚙️ API Layer (Express.js :5000)"]
+        C["Auth Routes"]
+        D["Project Routes"]
+        E["User Routes"]
+        F["Course Routes"]
+        G["Settings Routes"]
+    end
+
+    subgraph CONTROLLER["🎮 Controller Layer"]
+        C1["authController"]
+        D1["projectController"]
+        E1["userController"]
+        F1["courseController"]
+        G1["settingController"]
+        D2["weeklyReportController"]
+        D3["fileController"]
+    end
+
+    subgraph DB_MYSQL["🐬 MySQL (Sequelize ORM)"]
+        H["Users Table"]
+        I["Courses Table"]
+        J["SystemSettings Table"]
+    end
+
+    subgraph DB_MONGO["🍃 MongoDB (Mongoose ODM)"]
+        K["Projects Collection"]
+        L["WeeklyReports (Embedded)"]
+        M["Comments (Embedded)"]
+        N["Files Metadata"]
+        O["Milestones (Embedded)"]
+    end
+
+    subgraph STORAGE["📁 File Storage"]
+        P["/uploads/ directory"]
+    end
+
+    A -->|HTTP REST| B
+    B -->|Validated| C
+    B -->|Validated| D
+    B -->|Validated| E
+    B -->|Validated| F
+    B -->|Validated| G
+
+    C --> C1
+    D --> D1
+    D --> D2
+    D --> D3
+    E --> E1
+    F --> F1
+    G --> G1
+
+    C1 -->|Query| H
+    D1 -->|Query| K
+    D2 -->|Query| K
+    D3 -->|Upload| P
+    D3 -->|Metadata| N
+    E1 -->|CRUD| H
+    F1 -->|CRUD| I
+    G1 -->|CRUD| J
+
+    K --- L
+    K --- M
+    K --- N
+    K --- O

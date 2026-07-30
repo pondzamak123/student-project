@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container { width: 1280px; min-height: 720px; box-sizing: border-box; background: #E8EAF6; position: relative; overflow: hidden; font-family: 'Inter', sans-serif; }
+      
+      /* Decorative Circles */
+      .circle-accent-1 { position: absolute; width: 450px; height: 450px; border-radius: 50%; background: #FFC107; top: -120px; left: -100px; opacity: 0.85; }
+      .circle-accent-2 { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: #3949AB; top: 250px; left: 180px; opacity: 0.15; }
+      
+      /* Content Block - Right Side */
+      .content-block { position: absolute; right: 60px; top: 80px; max-width: 700px; }
+      
+      /* Typography */
+      .slide-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 36px; color: #1A237E; margin-bottom: 50px; }
+      
+      /* Validation List */
+      .validation-list { display: flex; flex-direction: column; gap: 28px; }
+      .validation-item { display: flex; align-items: flex-start; }
+      .item-icon { min-width: 48px; height: 48px; border-radius: 50%; background: #1A237E; display: flex; align-items: center; justify-content: center; color: #FFC107; font-size: 20px; margin-right: 20px; margin-top: 2px; }
+      .item-content { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 20px; color: #3949AB; line-height: 1.5; }
+      .item-content strong { font-weight: 500; color: #1A237E; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="circle-accent-1"></div>
+        <div class="circle-accent-2"></div>
+        
+        <div class="content-block">
+            <div class="slide-title">ตรวจสอบข้อมูลเข้มงวดทุกระดับ</div>
+            
+            <div class="validation-list">
+                <div class="validation-item">
+                    <div class="item-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="item-content"><strong>express-validator</strong> ตรวจสอบ input ทุก endpoint (email format, password length, enum values)</div>
+                </div>
+                
+                <div class="validation-item">
+                    <div class="item-icon"><i class="fas fa-key"></i></div>
+                    <div class="item-content"><strong>JWT Token</strong> ล็อกอินรับ token, ทุก request ต้องส่ง Bearer token</div>
+                </div>
+                
+                <div class="validation-item">
+                    <div class="item-icon"><i class="fas fa-user-lock"></i></div>
+                    <div class="item-content"><strong>Role-Based Access</strong> student เห็นเฉพาะตัวเอง, teacher เห็นทีมตัวเอง, admin เห็นทั้งหมด</div>
+                </div>
+                
+                <div class="validation-item">
+                    <div class="item-icon"><i class="fas fa-file-upload"></i></div>
+                    <div class="item-content"><strong>File Upload Validation</strong> จำกัดประเภทไฟล์ (PDF, DOCX, PPTX, ipynb, zip), จำกัดขนาด 10MB, จำกัด 5 ไฟล์/ครั้ง</div>
+                </div>
+                
+                <div class="validation-item">
+                    <div class="item-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="item-content"><strong>Ownership Check</strong> ตรวจสอบว่าเป็น student ของโครงงานก่อนอัปโหลดไฟล์</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

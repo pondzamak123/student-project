@@ -1,0 +1,133 @@
+{
+  "project_info": {
+    "title": "Student Project Tracking Dashboard",
+    "created": 1785353093.629,
+    "last_updated": 1785353185.334,
+    "total_slides": 12
+  },
+  "slides": [
+    {
+      "id": "title",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "problem",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "solution",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "architecture",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "database",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "api",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "validation",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "dashboard_page",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "project_reports",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "results",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "tech_stack",
+      "state": "edited",
+      "pageNum": 11
+    },
+    {
+      "id": "summary",
+      "state": "edited",
+      "pageNum": 12
+    }
+  ],
+  "outline": [
+    {
+      "id": "title",
+      "title": "Student Project Tracking Dashboard",
+      "summary": "หน้าแรก: ชื่อโปรเจค ระบบติดตามความคืบหน้าโครงงานนักศึกษา Full-Stack Web Application"
+    },
+    {
+      "id": "problem",
+      "title": "ปัญหาการติดตามโครงงานนักศึกษาแบบดั้งเดิม",
+      "summary": "ปัญหา: ติดตามยาก ข้อมูลกระจัดกระจาย ไม่มี progress system ไม่มี central repo ไม่มี feedback loop"
+    },
+    {
+      "id": "solution",
+      "title": "แนวทางแก้ไข Dashboard แบบ Real-time",
+      "summary": "Dashboard แสดงภาพรวม, Weekly Report, ไฟล์รวมศูนย์, Multi-role Access, Hybrid Database"
+    },
+    {
+      "id": "architecture",
+      "title": "Full-Stack Architecture ด้วย 4 ชั้น",
+      "summary": "Frontend React+Vite, Backend Node+Express, MySQL Sequelize, MongoDB Mongoose, JWT+RBAC, Swagger"
+    },
+    {
+      "id": "database",
+      "title": "เลือก DB ตามลักษณะข้อมูล MySQL vs MongoDB",
+      "summary": "MySQL เก็บ Users/Courses/Settings, MongoDB เก็บ Projects/Reports/Comments/Files, เชื่อมต่อพร้อมกัน"
+    },
+    {
+      "id": "api",
+      "title": "RESTful API 15 Endpoints ครอบคลุมทุกฟีเจอร์",
+      "summary": "ตาราง API endpoints ทั้งหมด 8 กลุ่ม: Auth, Projects, Weekly Reports, Comments, Files, Users, Courses, Settings"
+    },
+    {
+      "id": "validation",
+      "title": "ตรวจสอบข้อมูลเข้มงวดทุกระดับ",
+      "summary": "express-validator, JWT Token, Role-Based Access, File Upload Validation, Ownership Check"
+    },
+    {
+      "id": "dashboard_page",
+      "title": "หน้าแรกแสดงภาพรวมแบบ Real-time",
+      "summary": "สถิติรวม, Progress Bar, Cards แสดงโครงงาน, กรองตาม role, Sidebar Navigation"
+    },
+    {
+      "id": "project_reports",
+      "title": "จัดการโครงงานครบวงจรในหน้าเดียว",
+      "summary": "รายละเอียดโครงงาน, Milestone Checklist, Weekly Reports Timeline, Comments, Files Section"
+    },
+    {
+      "id": "results",
+      "title": "ระบบทำงานได้จริงครบทุกฟังก์ชัน",
+      "summary": "3 Roles ทำงานได้, CRUD ครบ, Weekly Report+Comments end-to-end, File Upload, API Docs ครบ",
+      "image_plan": "/home/ubuntu/upload/pasted_file_8X5ymU_image.png - The image is a table showing evaluation criteria for a project, which directly relates to the slide's content about the system's functionality and results."
+    },
+    {
+      "id": "tech_stack",
+      "title": "Tech Stack Modern Full-Stack",
+      "summary": "ตารางเทคโนโลยี: React, Node.js, MySQL, MongoDB, Multer, Swagger, Postman"
+    },
+    {
+      "id": "summary",
+      "title": "Student Project Tracking Dashboard เสร็จสมบูรณ์",
+      "summary": "สรุป: Frontend+Backend+2 DBs ครบ, RESTful API+Validation+JWT+RBAC, Swagger+Postman พร้อมใช้, npm install แล้วรันได้ทันที"
+    }
+  ]
+}

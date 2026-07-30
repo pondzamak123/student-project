@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container { width: 1280px; min-height: 720px; box-sizing: border-box; background: #E8EAF6; position: relative; overflow: hidden; font-family: 'Inter', sans-serif; }
+      .circle-accent { position: absolute; width: 350px; height: 350px; border-radius: 50%; background: #FFC107; top: -60px; right: -80px; opacity: 0.8; }
+      .circle-accent-2 { position: absolute; width: 180px; height: 180px; border-radius: 50%; background: #3949AB; bottom: 40px; right: 200px; opacity: 0.12; }
+      .slide-header { position: absolute; top: 50px; left: 60px; }
+      .slide-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 32px; color: #1A237E; }
+      .solution-grid { position: absolute; left: 60px; top: 200px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 860px; }
+      .solution-item { display: flex; align-items: flex-start; }
+      .solution-icon { min-width: 44px; height: 44px; border-radius: 50%; background: #1A237E; display: flex; align-items: center; justify-content: center; color: #FFC107; font-size: 18px; margin-right: 14px; margin-top: 2px; }
+      .solution-text { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 17px; color: #3949AB; line-height: 1.5; }
+      .solution-text strong { font-weight: 500; color: #1A237E; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="circle-accent"></div>
+        <div class="circle-accent-2"></div>
+        <div class="slide-header">
+            <div class="slide-title">Dashboard แบบ Real-time ติดตามโครงงานทุกทีม</div>
+        </div>
+        <div class="solution-grid">
+            <div class="solution-item">
+                <div class="solution-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="solution-text"><strong>Dashboard ภาพรวม</strong> แสดงสถานะและ progress bar ของทุกโครงงานแบบ real-time</div>
+            </div>
+            <div class="solution-item">
+                <div class="solution-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="solution-text"><strong>Weekly Report</strong> นักศึกษาอัปเดตทุกสัปดาห์ อาจารย์คอมเมนต์ได้ทันที</div>
+            </div>
+            <div class="solution-item">
+                <div class="solution-icon"><i class="fas fa-folder-open"></i></div>
+                <div class="solution-text"><strong>ไฟล์รวมศูนย์</strong> อัปโหลดได้ 5 ไฟล์/ครั้ง รองรับ PDF, DOCX, PPTX</div>
+            </div>
+            <div class="solution-item">
+                <div class="solution-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="solution-text"><strong>Multi-role Access</strong> นักศึกษา / อาจารย์ / Admin เห็นข้อมูลตามสิทธิ์</div>
+            </div>
+            <div class="solution-item">
+                <div class="solution-icon"><i class="fas fa-database"></i></div>
+                <div class="solution-text"><strong>Hybrid Database</strong> MySQL (Users, Courses) + MongoDB (Projects, Reports)</div>
+            </div>
+            <div class="solution-item">
+                <div class="solution-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="solution-text"><strong>JWT + RBAC</strong> ระบบยืนยันตัวตนและควบคุมสิทธิ์เข้าถึงทุกระดับ</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

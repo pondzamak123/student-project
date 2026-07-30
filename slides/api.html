@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500;600&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container { width: 1280px; min-height: 720px; box-sizing: border-box; background: #E8EAF6; position: relative; overflow: hidden; font-family: 'Inter', sans-serif; }
+      .circle-accent-1 { position: absolute; width: 450px; height: 450px; border-radius: 50%; background: #FFC107; top: -120px; left: -120px; opacity: 0.9; }
+      .circle-accent-2 { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: #1A237E; top: 300px; left: 200px; opacity: 0.1; }
+      
+      .content-block { position: absolute; top: 60px; right: 60px; width: 920px; }
+      .slide-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 34px; color: #1A237E; margin-bottom: 30px; }
+      
+      .api-table { width: 100%; border-collapse: collapse; }
+      .api-row { display: grid; grid-template-columns: 180px 1fr 220px; align-items: center; border-bottom: 1px solid rgba(57, 73, 171, 0.1); }
+      .api-header { padding: 15px 0; font-weight: 600; color: #1A237E; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #1A237E; }
+      .api-cell { padding: 16px 0; font-weight: 300; color: #3949AB; font-size: 16px; }
+      .tag-cell { font-weight: 500; color: #1A237E; display: flex; align-items: center; gap: 10px; }
+      .tag-icon { color: #FFC107; font-size: 20px; }
+      .endpoint-cell { font-family: monospace; font-size: 15px; color: #3949AB; background: rgba(26, 35, 126, 0.05); padding: 6px 12px; border-radius: 4px; display: inline-block; }
+      
+      .method-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; color: white; margin-right: 8px; margin-bottom: 4px; }
+      .method-get { background-color: #2E7D32; }
+      .method-post { background-color: #1565C0; }
+      .method-put { background-color: #E65100; }
+      .method-patch { background-color: #827717; }
+      .method-delete { background-color: #C62828; }
+      
+      .footer-note { position: absolute; bottom: 60px; right: 60px; font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; color: #3949AB; }
+      .footer-note i { color: #FFC107; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="circle-accent-1"></div>
+        <div class="circle-accent-2"></div>
+        
+        <div class="content-block">
+            <div class="slide-title">RESTful API — 15 Endpoints ครอบคลุมทุกฟีเจอร์</div>
+            
+            <div class="api-table">
+                <div class="api-row api-header">
+                    <div>Tag</div>
+                    <div>Endpoints</div>
+                    <div>Methods</div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-key tag-icon"></i> Auth</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/auth/login</span><br><span class="endpoint-cell">/api/auth/me</span></div>
+                    <div class="api-cell"><span class="method-badge method-post">POST</span><span class="method-badge method-get">GET</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-project-diagram tag-icon"></i> Projects</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/projects</span><br><span class="endpoint-cell">/api/projects/stats</span><br><span class="endpoint-cell">/api/projects/:id</span></div>
+                    <div class="api-cell"><span class="method-badge method-get">GET</span><span class="method-badge method-post">POST</span><span class="method-badge method-put">PUT</span><span class="method-badge method-patch">PATCH</span><span class="method-badge method-delete">DELETE</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-file-weekly tag-icon"></i> Reports</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/projects/:id/weekly-reports</span></div>
+                    <div class="api-cell"><span class="method-badge method-post">POST</span><span class="method-badge method-put">PUT</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-comments tag-icon"></i> Comments</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/.../weekly-reports/:id/comments</span></div>
+                    <div class="api-cell"><span class="method-badge method-get">GET</span><span class="method-badge method-post">POST</span><span class="method-badge method-delete">DELETE</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-folder-open tag-icon"></i> Files</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/projects/:id/files</span></div>
+                    <div class="api-cell"><span class="method-badge method-post">POST</span><span class="method-badge method-delete">DELETE</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-users tag-icon"></i> Users</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/users</span><br><span class="endpoint-cell">/api/users/teachers</span><br><span class="endpoint-cell">/api/users/students</span></div>
+                    <div class="api-cell"><span class="method-badge method-get">GET</span><span class="method-badge method-post">POST</span><span class="method-badge method-delete">DELETE</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-book tag-icon"></i> Courses</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/courses</span><br><span class="endpoint-cell">/api/courses/:code</span></div>
+                    <div class="api-cell"><span class="method-badge method-get">GET</span><span class="method-badge method-post">POST</span><span class="method-badge method-delete">DELETE</span></div>
+                </div>
+                
+                <div class="api-row">
+                    <div class="api-cell tag-cell"><i class="fas fa-cog tag-icon"></i> Settings</div>
+                    <div class="api-cell"><span class="endpoint-cell">/api/settings</span><br><span class="endpoint-cell">/api/settings/bulk</span></div>
+                    <div class="api-cell"><span class="method-badge method-get">GET</span><span class="method-badge method-put">PUT</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            <i class="fas fa-lock"></i> ทุก endpoint มี JWT Auth + Validation + Role Check
+        </div>
+    </div>
+</body>
+</html>

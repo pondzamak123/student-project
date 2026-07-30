@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;500&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container { width: 1280px; min-height: 720px; box-sizing: border-box; background: #E8EAF6; position: relative; overflow: hidden; font-family: 'Inter', sans-serif; }
+      
+      /* Decorative Circles */
+      .circle-accent-1 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: #FFC107; bottom: -100px; right: -80px; opacity: 0.85; }
+      .circle-accent-2 { position: absolute; width: 220px; height: 220px; border-radius: 50%; background: #3949AB; top: 100px; right: 150px; opacity: 0.1; }
+      
+      /* Content Block */
+      .content-block { position: absolute; top: 60px; left: 60px; max-width: 950px; }
+      
+      /* Typography */
+      .slide-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 34px; color: #1A237E; margin-bottom: 40px; }
+      
+      /* Tech Stack Table */
+      .tech-table { width: 100%; }
+      .tech-row { display: grid; grid-template-columns: 220px 1fr; align-items: center; margin-bottom: 12px; }
+      
+      .tech-header { 
+        background: #1A237E; 
+        padding: 16px 24px; 
+        font-weight: 500; 
+        font-size: 18px; 
+        color: #FFC107; 
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+      }
+      .tech-header.col-2 { background: #3949AB; color: #ffffff; }
+      
+      .tech-layer { 
+        padding: 16px 24px; 
+        background: rgba(26, 35, 126, 0.08); 
+        font-weight: 500; 
+        color: #1A237E; 
+        font-size: 17px; 
+        display: flex;
+        align-items: center;
+        border-left: 4px solid #1A237E;
+      }
+      .tech-layer i { margin-right: 12px; font-size: 20px; color: #3949AB; width: 24px; text-align: center; }
+      
+      .tech-tools { 
+        padding: 16px 24px; 
+        background: rgba(255, 255, 255, 0.6); 
+        font-weight: 300; 
+        color: #3949AB; 
+        font-size: 18px; 
+        letter-spacing: 0.5px;
+      }
+      .tech-tools strong { font-weight: 500; color: #1A237E; }
+      
+      /* Highlight specific tools */
+      .highlight { color: #FFC107; background: #1A237E; padding: 2px 8px; display: inline-block; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="circle-accent-1"></div>
+        <div class="circle-accent-2"></div>
+        
+        <div class="content-block">
+            <div class="slide-title">Tech Stack — Modern Full-Stack</div>
+            
+            <div class="tech-table">
+                <div class="tech-row tech-header">
+                    <div>Layer / Category</div>
+                    <div class="tech-header col-2">Technologies</div>
+                </div>
+                
+                <div class="tech-row">
+                    <div class="tech-layer"><i class="fab fa-react"></i> Frontend</div>
+                    <div class="tech-tools"><strong>React 18</strong>, <strong>Vite</strong>, <strong>TailwindCSS</strong>, Material UI, Lucide Icons</div>
+                </div>
+                
+                <div class="tech-row">
+                    <div class="tech-layer"><i class="fab fa-node-js"></i> Backend</div>
+                    <div class="tech-tools"><strong>Node.js</strong>, <strong>Express.js</strong>, JWT, express-validator</div>
+                </div>
+                
+                <div class="tech-row">
+                    <div class="tech-layer"><i class="fas fa-database"></i> Database</div>
+                    <div class="tech-tools"><strong>MySQL</strong> (Sequelize ORM), <strong>MongoDB</strong> (Mongoose ODM)</div>
+                </div>
+                
+                <div class="tech-row">
+                    <div class="tech-layer"><i class="fas fa-file-upload"></i> File Upload</div>
+                    <div class="tech-tools"><strong>Multer</strong> (Multi-part form data, File storage)</div>
+                </div>
+                
+                <div class="tech-row">
+                    <div class="tech-layer"><i class="fas fa-book"></i> API Docs</div>
+                    <div class="tech-tools"><strong>Swagger / OpenAPI 3.0</strong>, <strong>Postman Collection</strong></div>
+                </div>
+                
+                <div class="tech-row">
+                    <div class="tech-layer"><i class="fas fa-tools"></i> Dev Tools</div>
+                    <div class="tech-tools"><strong>nodemon</strong>, <strong>dotenv</strong>, <strong>bcryptjs</strong>, CORS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

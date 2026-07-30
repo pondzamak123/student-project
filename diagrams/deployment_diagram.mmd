@@ -1,0 +1,32 @@
+graph TB
+    subgraph DEVELOPMENT["🖥️ Development Environment"]
+        DEV["Developer Machine"]
+        DEV_FE["React Dev Server\n(Vite :3000)"]
+        DEV_BE["Node.js Server\n(Express :5000)"]
+        DEV_MYSQL["MySQL\n(Root:root)"]
+        DEV_MONGO["MongoDB\n(mongodb://localhost:27017)"]
+        DEV_SWAGGER["Swagger UI\n(/api-docs)"]
+
+        DEV_FE -->|Proxy /api| DEV_BE
+        DEV_BE -->|Sequelize| DEV_MYSQL
+        DEV_BE -->|Mongoose| DEV_MONGO
+        DEV_BE --> DEV_SWAGGER
+    end
+
+    subgraph PRODUCTION["🌐 Production Environment"]
+        PROD["Production Server"]
+        PROD_FE["React Build\n(Static Files :80)"]
+        PROD_BE["Node.js + PM2\n(Express :5000)"]
+        PROD_MYSQL["MySQL Server\n(Production DB)"]
+        PROD_MONGO["MongoDB Atlas\n(Cloud)"]
+        PROD_NGINX["Nginx\n(Reverse Proxy)"]
+        PROD_UPLOAD["File Storage\n(S3 / Local)"]
+
+        PROD_NGINX -->|Static Files| PROD_FE
+        PROD_NGINX -->|Proxy /api| PROD_BE
+        PROD_BE -->|Sequelize| PROD_MYSQL
+        PROD_BE -->|Mongoose| PROD_MONGO
+        PROD_BE --> PROD_UPLOAD
+    end
+
+    DEV -->|npm run build| PROD

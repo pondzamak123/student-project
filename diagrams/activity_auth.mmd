@@ -1,0 +1,24 @@
+graph TD
+    A([Start]) --> B["ผู้ใช้กรอก Email + Password"]
+    B --> C{"รับข้อมูลครบ?"}
+    C -->|ไม่| D["แสดง Error: Required Fields"]
+    D --> B
+    C -->|ใช่| E{"Email format ถูก?"}
+    E -->|ไม่| F["แสดง Error: Invalid Email"]
+    F --> B
+    E -->|ใช่| G{"ค้นหา User ใน MySQL?"}
+    G -->|ไม่พบ| H["แสดง Error: User not found"]
+    H --> B
+    G -->|พบ| I{"isActive = true?"}
+    I -->|ไม่| J["แสดง Error: Account disabled"]
+    J --> B
+    I -->|ใช่| K["เปรียบเทียบ Password (bcrypt)"]
+    K --> L{"Password ตรงกัน?"}
+    L -->|ไม่| M["แสดง Error: Wrong password"]
+    M --> B
+    L -->|ใช่| N["สร้าง JWT Token\n{id, role, email, iat, exp}"]
+    N --> O["อัปเดต lastLogin"]
+    O --> P["Return {token, user}"]
+    P --> Q["Frontend เก็บ Token → localStorage"]
+    Q --> R["Redirect → Dashboard"]
+    R --> S([End])

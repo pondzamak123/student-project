@@ -1,0 +1,43 @@
+graph TD
+    START(["ผู้ใช้เข้าระบบ"]) --> LOGIN{"มีบัญชี?"}
+    LOGIN -->|ไม่มี| REGISTER["Admin สร้างบัญชีให้"]
+    LOGIN -->|มี| LOGIN_PAGE["กรอก Email + Password"]
+
+    LOGIN_PAGE --> AUTH{"ล็อกอินสำเร็จ?"}
+    AUTH -->|ไม่| ERROR["แสดง Error → ลองใหม่"]
+    ERROR --> LOGIN_PAGE
+
+    AUTH -->|ใช่| ROLE_CHECK{"ตรวจสอบ Role"}
+
+    ROLE_CHECK -->|Student| STU_DASH["📊 Student Dashboard"]
+    ROLE_CHECK -->|Teacher| TEA_DASH["📊 Teacher Dashboard"]
+    ROLE_CHECK -->|Admin| ADM_DASH["📊 Admin Dashboard"]
+
+    STU_DASH --> STU_VIEW["ดูโครงงานตัวเอง"]
+    STU_VIEW --> STU_REPORT["📝 ส่ง Weekly Report"]
+    STU_VIEW --> STU_FILE["📎 อัปโหลดไฟล์"]
+    STU_REPORT --> STU_PROG["Progress Bar อัปเดต"]
+    STU_FILE --> STU_LIST["ดูไฟล์ที่อัปโหลด"]
+
+    TEA_DASH --> TEA_VIEW["ดูโครงงานทีมตัวเอง"]
+    TEA_VIEW --> TEA_STATUS["🔄 เปลี่ยนสถานะโครงงาน"]
+    TEA_VIEW --> TEA_COMMENT["💬 คอมเมนต์รายงาน"]
+    TEA_VIEW --> TEA_GRADE["⭐ ให้เกรด"]
+
+    ADM_DASH --> ADM_ALL["ดูโครงงานทั้งหมด"]
+    ADM_ALL --> ADM_CREATE["➕ สร้างโครงงานใหม่"]
+    ADM_ALL --> ADM_USERS["👥 จัดการผู้ใช้"]
+    ADM_ALL --> ADM_COURSES["📚 จัดการรายวิชา"]
+    ADM_ALL --> ADM_SETTINGS["⚙️ ตั้งค่าระบบ"]
+
+    STU_PROG --> LOGOUT
+    STU_LIST --> LOGOUT
+    TEA_STATUS --> LOGOUT
+    TEA_COMMENT --> LOGOUT
+    TEA_GRADE --> LOGOUT
+    ADM_CREATE --> LOGOUT
+    ADM_USERS --> LOGOUT
+    ADM_COURSES --> LOGOUT
+    ADM_SETTINGS --> LOGOUT
+
+    LOGOUT(["🚪 Logout → กลับหน้า Login"]) --> LOGIN_PAGE
